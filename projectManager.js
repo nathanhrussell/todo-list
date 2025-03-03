@@ -8,7 +8,7 @@ const projectManager = (function () {
     function addProject(title) {
         const newProject = createProject(title);
         projects.push(newProject);
-        return newProject
+        return newProject;
     }
 
     function getProjects() {

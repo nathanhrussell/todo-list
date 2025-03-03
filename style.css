@@ -46,6 +46,20 @@ aside h2 {
     background: #ffffff33;
 }
 
+.delete-btn {
+    margin-left: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: red;
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+
+.delete-btn:hover {
+    color: darkred;
+}
+
 #add-project, #add-todo {
     padding: 10px;
     border: none;
