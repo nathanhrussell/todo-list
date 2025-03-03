@@ -28,16 +28,17 @@ const domHandler = (function () {
                 setActiveProject(index);
             });
 
-            const deleteBtn = document.createElement("button");
-            deleteBtn.textContent = "X";
-            deleteBtn.classList.add("delete-btn");
-            deleteBtn.onclick = (event) => {
-                event.stopPropagation();
-                projectManager.removeProject(project.title);
-                renderProjects();
-            };
-
-            projectItem.appendChild(deleteBtn);
+            if (project.title !== "Default Project") {
+                const deleteBtn = document.createElement("button");
+                deleteBtn.textContent = "X";
+                deleteBtn.classList.add("delete-btn");
+                deleteBtn.onclick = (event) => {
+                    event.stopPropagation();
+                    projectManager.removeProject(project.title);
+                    renderProjects();
+                };
+                projectItem.appendChild(deleteBtn);
+            }
             projectList.appendChild(projectItem);
         });
     }

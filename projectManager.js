@@ -1,5 +1,5 @@
 const projectManager = (function () {
-    let projects = [];
+    let projects = [{ title: "Default Project", todos: [] }];
 
     function createProject(title) {
         return { title, todos: [] };
@@ -16,6 +16,7 @@ const projectManager = (function () {
     }
 
     function removeProject(title) {
+        if (title === "Default Project") return;
         projects = projects.filter(project => project.title !== title);
     }
 
