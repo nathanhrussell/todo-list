@@ -11,6 +11,7 @@ const domHandler = (function () {
 
             const deleteBtn = document.createElement("button");
             deleteBtn.textContent = "X";
+            deleteBtn.classList.add("delete-btn");
             deleteBtn.onclick = () => {
                 projectManager.removeProject(project.title);
                 renderProjects();
