@@ -46,6 +46,11 @@ aside h2 {
     background: #ffffff33;
 }
 
+.selected-project {
+    background: #ffffff4d;
+    font-weight: bold;
+}
+
 .delete-btn {
     margin-left: 10px;
     font-size: 18px;
