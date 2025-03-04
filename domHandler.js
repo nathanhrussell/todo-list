@@ -6,14 +6,16 @@ const domHandler = (function () {
 
     function setActiveProject(index) {
         const projectItems = document.querySelectorAll("#project-list li");
-        if (projectItems.length === 0 || index >= projectItems.length) return; // Prevents errors
+        if (projectItems.length === 0 || index >= projectItems.length) return;
     
         activeProjectIndex = index;
-    
         projectItems.forEach(item => item.classList.remove("selected-project"));
         projectItems[index].classList.add("selected-project");
-    
+        
+        const activeProject = projectManager.getProjects()[index];
         document.getElementById("project-title").textContent = projectManager.getProjects()[index].title;
+
+        renderTodos(activeProject);
     }
 
     function renderProjects() {
