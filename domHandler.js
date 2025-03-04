@@ -43,6 +43,28 @@ const domHandler = (function () {
         });
     }
 
+    function renderTodos(project) {
+        const todoList = document.getElementById("todo-list");
+        todoList.innerHTML = "";
+
+        project.todos.forEach(todo => {
+            const todoItem = document.createElement("li");
+            todoItem.classList.add(`priority-${todo.priority.toLowerCase()}`);
+            todoItem.innerHTML = `
+            <span>${todo.title} - Due: {todo.dueDate}</span>
+            <button class="delete-todo">X</button>
+        `;
+
+            todoItem.querySelector(".delete-todo").addEventListener("click", () => {
+                project.todos = project.todos.filter(t => t !== todo);
+                renderTodos(project);
+            });
+
+            todoList.appendChild(todoItem);
+
+        });
+    }
+
     function setupEventListeners() {
 
         addProjectBtn.addEventListener("click", () => {
