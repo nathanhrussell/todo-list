@@ -54,7 +54,7 @@ const domHandler = (function () {
             todoItem.classList.add(`priority-${todo.priority.toLowerCase()}`);
             todoItem.innerHTML = `
             <span><strong>${todo.title}</strong>: ${todo.description}</span>
-            <span>Due: ${todo.dueDate}</span>
+            <span>Due: ${todo.dueDate} at ${todo.time}</span>
             <button class="delete-todo">X</button>
         `;
         
@@ -75,6 +75,7 @@ const domHandler = (function () {
         const todoDescription = document.getElementById("todo-description");
         const todoDueDate = document.getElementById("todo-due-date");
         const todoPriority = document.getElementById("todo-priority");
+        const todoTime = document.getElementById("todo-time");
     
         addProjectBtn.addEventListener("click", () => {
             const projectName = prompt("Enter project name:");
@@ -94,23 +95,25 @@ const domHandler = (function () {
             const title = todoTitle.value.trim();
             const description = todoDescription.value.trim();
             const dueDate = todoDueDate.value.trim();
+            const time = todoTime.value.trim();
             const priority = todoPriority.value.trim();
-    
-            if (!title || !dueDate) {
-                alert("Title and Due Date are required.");
+            
+            if (!title) {
+                alert("A title is required.");
                 return;
             }
     
             const activeProject = projectManager.getProjects()[activeProjectIndex];
     
             if (activeProject) {
-                projectManager.addTodoToProject(activeProject.title, title, description, dueDate, priority);
+                projectManager.addTodoToProject(activeProject.title, title, description, dueDate, time, priority);
                 renderTodos(activeProject);
             }
     
             todoTitle.value = "";
             todoDescription.value = "";
             todoDueDate.value = "";
+            todoTime.value = "";
             todoPriority.value = "medium";
     
             todoFormContainer.style.display = "none";

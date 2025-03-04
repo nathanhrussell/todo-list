@@ -1,11 +1,12 @@
 const projectManager = (function () {
     let projects = [{ title: "Default Project", todos: [] }];
 
-    function createTodo(title, description, dueDate, priority) {
+    function createTodo(title, description, dueDate, time, priority) {
         return {
             title,
             description,
             dueDate,
+            time,
             priority,
             completed: false,
             toggleComplete() {
@@ -14,10 +15,10 @@ const projectManager = (function () {
         };
     }
 
-    function addTodoToProject(projectTitle, title, description, dueDate, priority) {
+    function addTodoToProject(projectTitle, title, description, dueDate, time, priority) {
         const project = projects.find(proj => proj.title === projectTitle);
         if(project) {
-            const newTodo = createTodo(title, description, dueDate, priority);
+            const newTodo = createTodo(title, description, dueDate, time, priority);
             project.todos.push(newTodo);
         };
     }
