@@ -45,12 +45,17 @@ const domHandler = (function () {
         });
     }
 
+    function capitaliseFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
     function renderTodos(project) {
         const todoList = document.getElementById("todo-list");
         todoList.innerHTML = "";
 
         project.todos.forEach(todo => {
             const todoItem = document.createElement("li");
+            const capitalisedPriority = capitaliseFirstLetter(todo.priority);
             todoItem.classList.add(`priority-${todo.priority.toLowerCase()}`);
 
             let dueText = todo.dueDate ? `Due: ${todo.dueDate}` : "";
@@ -58,6 +63,7 @@ const domHandler = (function () {
 
             todoItem.innerHTML = `
             <span><strong>${todo.title}</strong>: ${todo.description}</span>
+            <span>${capitalisedPriority} Priority<span>
             <span>${dueText} ${timeText}</span>
             <button class="delete-todo">X</button>
         `;

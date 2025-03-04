@@ -106,15 +106,15 @@ main {
 }
 
 .priority-high {
-    border-left: 5px solid red;
+    border-left: 5px solid red !important;
 }
 
 .priority-medium {
-    border-left: 5px solid orange;
+    border-left: 5px solid orange !important;
 }
 
 .priority-low {
-    border-left: 5px solid blue;
+    border-left: 5px solid #00d5ff !important;
 }
 
 #todo-form-container {
