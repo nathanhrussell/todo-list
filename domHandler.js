@@ -68,7 +68,13 @@ const domHandler = (function () {
     }
 
     function setupEventListeners() {
-
+        const todoFormContainer = document.getElementById("todo-form-container");
+        const todoForm = document.getElementById("todo-form");
+        const todoTitle = document.getElementById("todo-title");
+        const todoDescription = document.getElementById("todo-description");
+        const todoDueDate = document.getElementById("todo-due-date");
+        const todoPriority = document.getElementById("todo-priority");
+    
         addProjectBtn.addEventListener("click", () => {
             const projectName = prompt("Enter project name:");
             if (!projectName) return;
@@ -77,27 +83,38 @@ const domHandler = (function () {
             renderProjects();
         });
     
-
-        const addTodoBtn = document.getElementById("add-todo");
+        document.getElementById("add-todo").addEventListener("click", () => {
+            todoFormContainer.style.display = "block";
+        });
     
-        addTodoBtn.addEventListener("click", () => {
-            const title = prompt("Enter to-do title:");
-            if (!title) return;
+        todoForm.addEventListener("submit", function(event) {
+            event.preventDefault();
     
-            const description = prompt("Enter description (optional):");
-            const dueDate = prompt("Enter due date (YYYY-MM-DD):");
-            const priority = prompt("Enter priority (High, Medium, Low):");
+            const title = todoTitle.value.trim();
+            const description = todoDescription.value.trim();
+            const dueDate = todoDueDate.value.trim();
+            const priority = todoPriority.value.trim();
     
-
+            if (!title || !dueDate) {
+                alert("Title and Due Date are required.");
+                return;
+            }
+    
             const activeProject = projectManager.getProjects()[activeProjectIndex];
     
             if (activeProject) {
                 projectManager.addTodoToProject(activeProject.title, title, description, dueDate, priority);
                 renderTodos(activeProject);
             }
+    
+            todoTitle.value = "";
+            todoDescription.value = "";
+            todoDueDate.value = "";
+            todoPriority.value = "medium";
+    
+            todoFormContainer.style.display = "none";
         });
     }
     
-
-return { setupEventListeners, renderProjects, setActiveProject };
+    return { setupEventListeners, renderProjects, setActiveProject };
 })();
