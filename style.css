@@ -195,3 +195,14 @@ main {
 .delete-todo:hover {
     color: darkred;
 }
+
+.todo-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 8px;
+    background: #fff;
+}
