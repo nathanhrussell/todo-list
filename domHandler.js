@@ -80,7 +80,6 @@ const domHandler = (function () {
             const todoText = document.createElement("span");
             todoText.innerHTML = `<strong>${todo.title}</strong: ${todo.description} (Due: ${todo.dueDate} at ${todo.time})`;
 
-
             if (todo.completed) {
                 todoText.style.opacity = "0.4";
                 todoItem.style.opacity = "0.4";
