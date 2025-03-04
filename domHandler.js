@@ -57,12 +57,35 @@ const domHandler = (function () {
             <span>Due: ${todo.dueDate} at ${todo.time}</span>
             <button class="delete-todo">X</button>
         `;
-        
+
+            const checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            checkbox.checked = todo.completed;
+            checkbox.addEventListener("change", () => {
+                todo.toggleComplete();
+                renderTodos(project);
+            });
+
+            const todoText = document.createElement("span");
+            todoText.innerHTML = `<strong>${todo.title}</strong: ${todo.description} (Due: ${todo.dueDate} at ${todo.time})`;
+
+
+            if (todo.completed) {
+                todoText.style.opacity = "0.4";
+                todoItem.style.opacity = "0.4";
+                todoText.classList.add("completed");
+            } else {
+                todoText.style.opacity = "1";
+                todoItem.style.opacity = "1";
+            }
+            
             todoItem.querySelector(".delete-todo").addEventListener("click", () => {
                 project.todos = project.todos.filter(t => t !== todo);
                 renderTodos(project);
             });
 
+            todoList.appendChild(checkbox);
+            todoList.appendChild(todoText);
             todoList.appendChild(todoItem);
 
         });
