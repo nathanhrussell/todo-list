@@ -141,6 +141,10 @@ main {
     color: white;
     border: none;
     cursor: pointer;
+    padding: 10px 15px;
+    font-size: 16px;
+    width: 100%;
+    border-radius: 5px;
 }
 
 #todo-form button:hover {
