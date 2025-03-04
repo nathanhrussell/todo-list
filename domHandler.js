@@ -109,13 +109,27 @@ const domHandler = (function () {
         const todoDueDate = document.getElementById("todo-due-date");
         const todoPriority = document.getElementById("todo-priority");
         const todoTime = document.getElementById("todo-time");
+
+        const projectForm = document.getElementById("project-form");
+        const projectInput = document.getElementById("project-name");
+        const addProjectBtn = document.getElementById("add-project");
     
         addProjectBtn.addEventListener("click", () => {
-            const projectName = prompt("Enter project name:");
+            projectForm.style.display = "block";
+            projectInput.focus();
+        });
+
+        projectForm.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const projectName = projectInput.value.trim();
             if (!projectName) return;
-    
+
             projectManager.addProject(projectName);
             renderProjects();
+
+            projectInput.value = "";
+            projectForm.style.display = "none";
         });
     
         document.getElementById("add-todo").addEventListener("click", () => {

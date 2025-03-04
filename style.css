@@ -155,3 +155,30 @@ main {
     text-decoration: line-through;
     opacity: 0.6;
 }
+
+#project-form {
+    display: flex;
+    gap: 5px;
+    margin-top: 10px;
+}
+
+#project-form input {
+    flex-grow: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+#project-form button {
+    padding: 8px 12px;
+    border: none;
+    background: #007bff;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#project-form button:hover {
+    background: #0056b3;
+}
