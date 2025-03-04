@@ -116,3 +116,33 @@ main {
 .priority-low {
     border-left: 5px solid green;
 }
+
+#todo-form-container {
+    display: none;
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rbga(0, 0, 0, 0.1);
+}
+
+#todo-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#todo-form input, #todo-form select, #todo-form button {
+    padding: 8px;
+    font-size: 16px;
+}
+
+#todo-form button {
+    background: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#todo-form button:hover {
+    background: #0056b3;
+}
