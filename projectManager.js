@@ -14,10 +14,11 @@ const projectManager = (function () {
         };
     }
 
-    function addTodoToProject(projecTitle, todo) {
-        const project = projects.find(proj => proj.title === projecTitle);
+    function addTodoToProject(projectTitle, title, description, dueDate, priority) {
+        const project = projects.find(proj => proj.title === projectTitle);
         if(project) {
-            project.todos.push(todo);
+            const newTodo = createTodo(title, description, dueDate, priority);
+            project.todos.push(newTodo);
         };
     }
 
