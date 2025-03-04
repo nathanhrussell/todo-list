@@ -44,14 +44,36 @@ const domHandler = (function () {
     }
 
     function setupEventListeners() {
+
         addProjectBtn.addEventListener("click", () => {
             const projectName = prompt("Enter project name:");
             if (!projectName) return;
-
+    
             projectManager.addProject(projectName);
             renderProjects();
-    });
-}
+        });
+    
+
+        const addTodoBtn = document.getElementById("add-todo");
+    
+        addTodoBtn.addEventListener("click", () => {
+            const title = prompt("Enter to-do title:");
+            if (!title) return;
+    
+            const description = prompt("Enter description (optional):");
+            const dueDate = prompt("Enter due date (YYYY-MM-DD):");
+            const priority = prompt("Enter priority (High, Medium, Low):");
+    
+
+            const activeProject = projectManager.getProjects()[activeProjectIndex];
+    
+            if (activeProject) {
+                projectManager.addTodoToProject(activeProject.title, title, description, dueDate, priority);
+                renderTodos(activeProject);
+            }
+        });
+    }
+    
 
 return { setupEventListeners, renderProjects, setActiveProject };
 })();
