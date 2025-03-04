@@ -52,9 +52,13 @@ const domHandler = (function () {
         project.todos.forEach(todo => {
             const todoItem = document.createElement("li");
             todoItem.classList.add(`priority-${todo.priority.toLowerCase()}`);
+
+            let dueText = todo.dueDate ? `Due: ${todo.dueDate}` : "";
+            let timeText = todo.time ? `at ${todo.time}` : "";
+
             todoItem.innerHTML = `
             <span><strong>${todo.title}</strong>: ${todo.description}</span>
-            <span>Due: ${todo.dueDate} at ${todo.time}</span>
+            <span>${dueText} ${timeText}</span>
             <button class="delete-todo">X</button>
         `;
 
