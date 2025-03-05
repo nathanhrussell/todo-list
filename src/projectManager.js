@@ -50,3 +50,4 @@ const projectManager = (function () {
 
 })();
 
+export { projectManager };
