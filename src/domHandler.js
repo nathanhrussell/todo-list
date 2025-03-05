@@ -2,12 +2,17 @@ const projectList = document.getElementById("project-list");
 import { projectManager } from "./projectManager";
 let activeProjectIndex = 0;
 
+function capitaliseFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 function renderTodos(project) {
     const todoList = document.getElementById("todo-list");
     todoList.innerHTML = "";
 
     project.todos.forEach(todo => {
         const todoItem = document.createElement("li");
+        const capitalisedPriority = capitaliseFirstLetter(todo.priority);
         todoItem.classList.add(`priority-${todo.priority.toLowerCase()}`);
         todoItem.classList.add("todo-item");
 
@@ -16,7 +21,7 @@ function renderTodos(project) {
 
         todoItem.innerHTML = `
             <span><strong>${todo.title}</strong>: ${todo.description}</span>
-            <span>${todo.priority} Priority | <span>
+            <span>${capitalisedPriority} Priority | <span>
             <span>${dueText} ${timeText}</span>
             <button class="delete-todo">X</button>
         `;
