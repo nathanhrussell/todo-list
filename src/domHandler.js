@@ -1,5 +1,6 @@
 const projectList = document.getElementById("project-list");
 import { projectManager } from "./projectManager";
+import { format, parseISO, isValid } from "date-fns";
 let activeProjectIndex = 0;
 
 function capitaliseFirstLetter(string) {
@@ -16,8 +17,22 @@ function renderTodos(project) {
         todoItem.classList.add(`priority-${todo.priority.toLowerCase()}`);
         todoItem.classList.add("todo-item");
 
-        let dueText = todo.dueDate ? `Due: ${todo.dueDate}` : "";
-        let timeText = todo.time ? `at ${todo.time}` : "";
+        let dueText = "";
+        let timeText = "";
+
+        if (todo.dueDate) {
+            const parsedDate = parseISO(todo.dueDate);
+            if (isValid(parsedDate)) {
+                dueText = `Due: ${format(parsedDate, "dd MMM yyyy")}`;
+            }
+        }
+
+        if (todo.time) {
+            const parsedTime = parseISO(todo.time);
+            if (isValid(parsedTime)) {
+                timeText = `at ${format(parsedTime, "hh:mm a")}`;
+            }
+        }
 
         todoItem.innerHTML = `
             <span><strong>${todo.title}</strong>: ${todo.description}</span>
@@ -97,8 +112,8 @@ function setupEventListeners() {
         event.preventDefault();
         const title = todoTitle.value.trim();
         const description = todoDescription.value.trim();
-        const dueDate = todoDueDate.value.trim();
-        const time = todoTime.value.trim();
+        const dueDate = todoDueDate.value ? new Date(todoDueDate.value).toISOString() : "";
+        const time = todoTime.value ? new Date(`${todoDueDate.value}T${todoTime.value}`).toISOString() : "";
         const priority = todoPriority.value.trim();
 
         if (!title) {
