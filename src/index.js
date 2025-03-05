@@ -1,9 +1,12 @@
 import "./style.css";
-import { setupEventListeners, renderProjects, setActiveProject } from "./domHandler";
-import { projectManager } from "./projectManager";
+import {
+  setupEventListeners,
+  renderProjects,
+  setActiveProject,
+} from "./domHandler";
 
 document.addEventListener("DOMContentLoaded", () => {
-    renderProjects();
-    setActiveProject(0);
-    setupEventListeners();
+  renderProjects();
+  setActiveProject(0);
+  setupEventListeners();
 });
