@@ -127,6 +127,7 @@ const domHandler = (function () {
             if (!projectName) return;
 
             projectManager.addProject(projectName);
+            projectManager.saveProjects();
             renderProjects();
 
             projectInput.value = "";
@@ -155,6 +156,7 @@ const domHandler = (function () {
     
             if (activeProject) {
                 projectManager.addTodoToProject(activeProject.title, title, description, dueDate, time, priority);
+                projectManager.saveProjects();
                 renderTodos(activeProject);
             }
     
@@ -165,6 +167,11 @@ const domHandler = (function () {
             todoPriority.value = "medium";
     
             todoFormContainer.style.display = "none";
+        });
+
+        document.addEventListener("DOMContentLoaded", () => {
+            renderProjects();
+            setActiveProject(0);
         });
     }
     
